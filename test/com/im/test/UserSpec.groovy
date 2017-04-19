@@ -39,7 +39,7 @@ class UserSpec extends Specification {
 
 
         and: "Stub encrypt method"
-        mockedEncrypterService.encrypt("cba") >> "def"
+        mockedEncrypterService.encrypt("password") >> "def"
         user.passwordEncrypterService = mockedEncrypterService
 
         when:
