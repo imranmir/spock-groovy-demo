@@ -4,6 +4,7 @@ package com.im.test
 class Transaction {
 
     TransactionStatus status = TransactionStatus.SUCCESSFUL
+    CustomerService customerService = new CustomerService()
 
     EmailService emailService = new EmailService()
 
@@ -16,6 +17,7 @@ class Transaction {
         }
     }
 
+    //todo
     void cancelSale(Product product, User user) {
         String productName = product.name
         user.balance += (product.price - calculateDiscount(product, user))
@@ -23,11 +25,12 @@ class Transaction {
         emailService.sendCancellationEmail(user, productName)
     }
 
+
+    //todo
     BigDecimal calculateDiscount(Product product, User user) {
         BigDecimal discount = 0
         if (product.discountType != DiscountType.NONE) {
-
-            if (product.discountType == DiscountType.PRIVELLEGE_ONLY && user.isPrivellegedCustomer) {
+            if (customerService.isPrivellegedDiscountApplicable()) {
                 discount = product.price * 30 / 100
             } else {
                 discount = product.price * 10 / 100

@@ -73,6 +73,7 @@ class User {
         }
     }
 
+    //todo demo Use spy to to stub the getInterestedInCategories
     List<String>getSortedInterestedInCategories(){
         List<String> interestedInCategories = getInterestedInCategories()
         interestedInCategories.sort()
