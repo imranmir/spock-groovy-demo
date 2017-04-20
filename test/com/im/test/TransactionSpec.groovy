@@ -7,5 +7,27 @@ import spock.lang.Unroll
 
 class TransactionSpec extends Specification {
 
+       //todo
+//    void "We are able to cancel a sale"(){
+//
+//    }
+
+    //todo
+//    def "Customer discount is calculated for a product"() {
+//
+//    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

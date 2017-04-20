@@ -32,10 +32,24 @@ class User {
         return isValid
     }
 
+    String updatePassword(String newPassword) {
+        String oldPassword = this.password
+        this.password = newPassword
+
+        if (oldPassword != newPassword) {
+            emailService.sendPasswordResetEmail(this, newPassword)
+        } else {
+            emailService.sendPasswordResetFailureEmail(this, newPassword)
+
+        }
+    }
+
+
+
     String resetPasswordAndSendEmail() {
         String newPassword = "dummy"
         this.password = encyryptPassword(newPassword)
-        emailService.sendCancellationEmail(this, newPassword)
+        emailService.sendPasswordResetEmail(this, newPassword)
 
     }
 
@@ -43,6 +57,9 @@ class User {
         String encryptedPassword
         if (this.isValidPassword(pwd)) {
             encryptedPassword = passwordEncrypterService.encrypt(pwd)
+        }
+        if(encryptedPassword.size()<5){
+            encryptedPassword = "dummy"
         }
         return encryptedPassword
     }
@@ -73,6 +90,7 @@ class User {
         }
     }
 
+    //todo demo Use spy to to stub the getInterestedInCategories
     List<String>getSortedInterestedInCategories(){
         List<String> interestedInCategories = getInterestedInCategories()
         interestedInCategories.sort()
@@ -80,6 +98,7 @@ class User {
 
     List<String>getInterestedInCategories(){    //assumed to be a very complex method
         sleep(10000)
+        ["apples", "mangoes"]
     }
 
 }
